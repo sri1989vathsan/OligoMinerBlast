@@ -470,6 +470,7 @@ def probegen(l, L, gcPercent, GCPercent, nn_table, tm, TM,
                                     self.tm, self.TM))
 
                 # Report if %G+C too low/high.
+                #print(len(seq5))
                 if not self.gcCheck(seq5):
                     if (self.numGC * 100.0 / len(seq5)) < self.gcPercent:
                         if self.reportVal:
@@ -653,7 +654,8 @@ def probegen(l, L, gcPercent, GCPercent, nn_table, tm, TM,
             # Determine the stem of the input filename.
             fileName2 = str(self.inputFile).split('.')[1]
             fileName1 = str(fileName2).split('/')[-1]
-            pathss = os.path.join(self.folder,"InitialProbes")
+            #print(fileName1)
+            pathss = os.path.join(self.folder,"2_InitialProbes")
             if not os.path.isdir(pathss):
                 os.mkdir(pathss)
             fileName = os.path.join(pathss,fileName1)
@@ -818,7 +820,7 @@ def probegen(l, L, gcPercent, GCPercent, nn_table, tm, TM,
     startTime = timeit.default_timer()
 
     import glob
-    path = os.path.join(folder,"Sequences/*.fa")
+    path = os.path.join(folder,"1_Sequences/*.fa")
     files = glob.glob(path)
     #print(os.getcwd())
     #print(path)
