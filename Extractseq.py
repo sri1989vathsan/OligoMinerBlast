@@ -16,7 +16,7 @@ def seqextract(inputFile,pathTxShort,folder):
     # Import regex module.
     import re
 
-    paths = os.path.join(folder,"Sequences")
+    paths = os.path.join(folder,"1_Sequences")
     
     if not os.path.isdir(paths):
         os.mkdir(paths)
@@ -36,6 +36,7 @@ def seqextract(inputFile,pathTxShort,folder):
             pos2.append("abc")
         else:
             pos = np.argwhere(list2[i,0]==names)
+            print(pos)
             pos2.append((pos[0][0]))
             
        

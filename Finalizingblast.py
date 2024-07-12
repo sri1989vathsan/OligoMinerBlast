@@ -20,25 +20,23 @@ def finalprobe(readoutprobedoc,primerdoc,nprobes,folder,transcriptlist,primernum
     readlist1 = pd.read_csv(readoutprobedoc,header=None,sep=",")
     readlist2 = readlist1.to_numpy()
     
-    seqlistpath = os.path.join(folder,"Sequences/*.fa")
+    seqlistpath = os.path.join(folder,"1_Sequences/*.fa")
     seqfiles = glob.glob(seqlistpath)
     seqfiles.sort()
     
     #print(seqfiles)
-    print(folder)
-    path = os.path.join(folder,"InitialProbes/*.fa")
+    path = os.path.join(folder,"2_InitialProbes/*.fa")
     files = glob.glob(path)
     files.sort()
     
-    path2 = os.path.join(folder,"InitialProbes/*.txt")
+    path2 = os.path.join(folder,"2_InitialProbes/*.txt")
     files2 = glob.glob(path2)
     files2.sort()
     
-    print(path)
-    print(path2)
+    outputfolder = os.path.join(folder,"3_Output")
     
-    if not os.path.isdir(folder+"Output"):
-        os.mkdir(folder+"Output")
+    if not os.path.isdir(outputfolder):
+        os.mkdir(outputfolder)
 
     revcom = []
     rev = []
@@ -51,7 +49,6 @@ def finalprobe(readoutprobedoc,primerdoc,nprobes,folder,transcriptlist,primernum
     for fil in range(0,len(files)):
         seq=[]
         name=[]
-        print(fil)
         for x in SeqIO.parse(files[fil], 'fasta'):
             seq.append(str(x.seq).upper())
             name.append(str(x.name).upper())
@@ -162,10 +159,10 @@ def finalprobe(readoutprobedoc,primerdoc,nprobes,folder,transcriptlist,primernum
     lists = np.array(lists)
 
 
-    pd.DataFrame(revcoms).to_csv(folder+"/Output/MultiFISHProbes.csv")
-    pd.DataFrame(revs).to_csv(folder+"/Output/BindingProbes.csv")
+    pd.DataFrame(revcoms).to_csv(outputfolder+"/MultiFISHProbes.csv")
+    pd.DataFrame(revs).to_csv(outputfolder+"/BindingProbes.csv")
     #pd.DataFrame(rej).to_csv(folder+"/Output/RejectedProbes.csv")
-    pd.DataFrame(lists).to_csv(folder+"/Output/NumberProbelist.csv")
+    pd.DataFrame(lists).to_csv(outputfolder+"/NumberProbelist.csv")
     print('Completed Probe generation')
 
 #print(type(revcom))
