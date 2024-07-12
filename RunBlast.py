@@ -1,7 +1,7 @@
 def blastrun(blastdb,blasttrnadb,blastrrnadb,folder):
     import os
     import glob
-    path = os.path.join(folder,"InitialProbes/*.fa")
+    path = os.path.join(folder,"2_InitialProbes/*.fa")
     files = glob.glob(path)
     files.sort()
     
